@@ -24,17 +24,13 @@ fi
 
 java -cp ".;lib/junit-4.13.2.jar;lib/hamcrest-core-1.3.jar" org.junit.runner.JUnitCore TestListExamples > res.txt
 
-FAILREP=`grep "Failures: " res.txt`
+FAILGREP=`grep "Failures: " res.txt`
+NUMFAILS=${FAILGREP:25:1}
 
-NUMFAILS=${FAILREP:25:1}
-
-echo --------
-
-if [ -z "$NUMFAILS" ]
+if [[ $NUMFAILS -eq 0 ]]
 then
-    echo "You passed all the tests."
-else
-    echo "$NUMFAILS failure(s) found."
-    echo --------
-    echo "Because there was $NUMFAILS failure(s), you failed."
+	echo "You passed all the tests!"
+else 
+	echo "You did NOT pass all the tests. There was $NUMFAILS failures."
 fi
+
