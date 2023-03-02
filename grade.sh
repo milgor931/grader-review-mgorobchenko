@@ -24,4 +24,4 @@ fi
 
 java -cp ".;lib/junit-4.13.2.jar;lib/hamcrest-core-1.3.jar" org.junit.runner.JUnitCore TestListExamples > res.txt
 
-grep "Failures: " res.txt > failReport.txt
+FAILREP=`grep "Failures: " res.txt`
